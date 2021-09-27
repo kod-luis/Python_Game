@@ -1,0 +1,6 @@
+# Directories and files that cannot be commited to git
+
+# Byte-compiled
+__pycache__
+# Environments
+venv
