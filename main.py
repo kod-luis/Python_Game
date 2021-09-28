@@ -13,6 +13,8 @@ VENCEU_FONT = pygame.font.SysFont('Calibri', 130)
 TIRO_SOM = pygame.mixer.Sound(os.path.join('assets', 'shot.mp3'))
 HIT_SOM = pygame.mixer.Sound(os.path.join('assets', 'hit.mp3'))
 WIN_SOM = pygame.mixer.Sound(os.path.join('assets', 'win.mp3'))
+GAME_ICON = pygame.image.load(os.path.join('assets', 'icon.png'))
+pygame.display.set_icon(GAME_ICON)
 
 VEL = 4
 VEL_TIRO = 6
