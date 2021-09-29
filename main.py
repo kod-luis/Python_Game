@@ -1,8 +1,6 @@
 import pygame
 import os
 
-from pygame.constants import WINDOWCLOSE
-
 pygame.font.init()
 pygame.mixer.init()
 WIDTH, HEIGHT = 1000, 600
@@ -150,7 +148,7 @@ def venceu(txt):
 
 def main():
     THEME_SOM.play(loops=-1)
-    THEME_SOM.set_volume(0.2)
+    THEME_SOM.set_volume(0.7)
     p1 = set_player_img("raiden_c.png", P_SIZE)
     p2 = set_player_img("ayaka_c.png", (P_SIZE[0]-8,P_SIZE[1]))
     p1_pos = pygame.Rect((WIDTH//2)//2-p1.get_width()//2, 
