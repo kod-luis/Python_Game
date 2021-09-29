@@ -20,7 +20,7 @@ GAME_ICON = pygame.image.load(os.path.join('assets', 'icon.png'))
 pygame.display.set_icon(GAME_ICON)
 
 VEL = 4
-VEL_TIRO = 6
+VEL_TIRO = 10
 MAX_TIRO = 3
 
 P_SIZE = (75, 80)
