@@ -1,18 +1,21 @@
 import pygame
 import os
 
+from pygame.constants import WINDOWCLOSE
+
 pygame.font.init()
 pygame.mixer.init()
-WIDTH, HEIGHT = 900, 500
+WIDTH, HEIGHT = 1000, 600
 BORDER = pygame.Rect(WIDTH//2 -5, 0, 10, HEIGHT)
 FPS = 60
 BG = pygame.transform.scale(pygame.image.load(os.path.join('assets', 'inazuma.jpg')), (WIDTH, HEIGHT))
-FG = pygame.image.load(os.path.join('assets', 'fg.png'))
+FG = pygame.transform.scale(pygame.image.load(os.path.join('assets', 'fg.png')),(WIDTH, HEIGHT))
 HP_FONT = pygame.font.Font(os.path.join('assets', 'Lcd.ttf'), 40)
 VENCEU_FONT = pygame.font.SysFont('Calibri', 130)
 TIRO_SOM = pygame.mixer.Sound(os.path.join('assets', 'shot.mp3'))
 HIT_SOM = pygame.mixer.Sound(os.path.join('assets', 'hit.mp3'))
-WIN_SOM = pygame.mixer.Sound(os.path.join('assets', 'win.mp3'))
+WIN_SOM = pygame.mixer.Sound(os.path.join('assets', 'win_sound.mp3'))
+THEME_SOM = pygame.mixer.Sound(os.path.join('assets', 'theme.mp3'))
 GAME_ICON = pygame.image.load(os.path.join('assets', 'icon.png'))
 pygame.display.set_icon(GAME_ICON)
 
@@ -137,6 +140,7 @@ def tiro_handler(p1_tiro:list, p2_tiro:list, p1_pos, p2_pos):
             p2_tiro.remove(tiro)
 
 def venceu(txt):
+    THEME_SOM.stop()
     WIN.blit(FG, (0,0))
     venceu_txt = VENCEU_FONT.render(txt, 1, (255,255,255))
     WIN.blit(venceu_txt, (WIDTH//2-venceu_txt.get_width()//2, HEIGHT//2-venceu_txt.get_height()//2))
@@ -145,6 +149,8 @@ def venceu(txt):
     pygame.time.delay(5000)
 
 def main():
+    THEME_SOM.play(loops=-1)
+    THEME_SOM.set_volume(0.2)
     p1 = set_player_img("raiden_c.png", P_SIZE)
     p2 = set_player_img("ayaka_c.png", (P_SIZE[0]-8,P_SIZE[1]))
     p1_pos = pygame.Rect((WIDTH//2)//2-p1.get_width()//2, 
@@ -156,30 +162,30 @@ def main():
     p1_tiro = []
     p2_tiro = []
     p1_hp = p2_hp = 10
-
     clock = pygame.time.Clock()
     while True:
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-            
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LCTRL and len(p1_tiro) < MAX_TIRO:
-                    tiro = pygame.Rect(p1_pos.x + p1_pos.width-2, p1_pos.y + (p1_pos.height//2)-2, 15, 5)
-                    p1_tiro.append(tiro)
-                    TIRO_SOM.play()
-                if event.key == pygame.K_RCTRL and len(p2_tiro) < MAX_TIRO:
-                    tiro = pygame.Rect(p2_pos.x+2, p2_pos.y + (p2_pos.height//2)-2, 15, 5)
-                    p2_tiro.append(tiro)
-                    TIRO_SOM.play()
-            
+
             if event.type == P1_HIT:
                 p1_hp -= 1
                 HIT_SOM.play()
             if event.type == P2_HIT:
                 p2_hp -= 1
                 HIT_SOM.play()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_e and len(p1_tiro) < MAX_TIRO:
+                    tiro = pygame.Rect(p1_pos.x + p1_pos.width-2, p1_pos.y + (p1_pos.height//2)-2, 15, 5)
+                    p1_tiro.append(tiro)
+                    TIRO_SOM.play()
+                if event.key == pygame.K_RETURN and len(p2_tiro) < MAX_TIRO:
+                    tiro = pygame.Rect(p2_pos.x+2, p2_pos.y + (p2_pos.height//2)-2, 15, 5)
+                    p2_tiro.append(tiro)
+                    TIRO_SOM.play()
+
 
         p1 = mov_handler(p1_pos, 1, p1)
         p2 = mov_handler(p2_pos, 2, p2)
