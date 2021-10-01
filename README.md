@@ -1,4 +1,4 @@
-# PyGameLesson
+# Python Game
 
 Small game created with Python and Pygame for **STUDY PORPUSES ONLY**.
 
