@@ -1,4 +1,4 @@
-# Python Game
+# 🕹 Python Game
 
 Small game created with Python and Pygame for **STUDY PORPUSES ONLY**.
 
@@ -15,3 +15,21 @@ Small game created with Python and Pygame for **STUDY PORPUSES ONLY**.
 **Requirements**
 * Python 3+
 * PyGame
+
+**Controls**
+* **Player 1 (Left)**
+
+  🚶🏻‍♀️ Movement: **W** **A** **S** **D** 
+  
+  🏃🏻‍♀️ Run: **LShift**
+  
+  🔫 Shoot: **E**
+  
+  
+* **Player 2 (Right)**:
+
+  🚶🏻‍♀️ Movement: **Keyboard Arrows (UP, DOWN, LEFT, RIGHT)**
+  
+  🏃🏻‍♀️ Run: **RShift**
+  
+  🔫 Shoot: **Enter**
