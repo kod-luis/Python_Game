@@ -11,3 +11,7 @@ Small game created with Python and Pygame for **STUDY PORPUSES ONLY**.
 * 🎵 **Laser Sound**: [nsstudios](https://freesound.org/people/nsstudios/sounds/344276/)
 
 * 🎵 **End Game Sound**: [EVRetro](https://freesound.org/people/EVRetro/sounds/535840/)
+
+**Requirements**
+* Python 3+
+* PyGame
